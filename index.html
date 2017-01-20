@@ -4,13 +4,19 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Introduction to GraphQL</title>
+
+		<meta name="description" content="Slides for a CS3281 lightning talk about GraphQL">
+		<meta name="author" content="Li Kai">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/lightning.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai.min.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -24,8 +30,286 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<img class="stretch plain" data-src="img/facebook.svg">
+					<aside class="notes">
+						Facebook invented it.
+					</aside>
+				</section>
+				<section>
+					<img class="stretch plain" data-src="img/github.svg">
+					<aside class="notes">
+						Github is using it,
+					</aside>
+				</section>
+				<section data-state="amaze" class="grid" data-transition="none fade-out" data-transition-speed="fast">
+					<div class="grid-sizer"></div>
+					<img class="plain grid-item" data-src="img/coursera.png">
+					<img class="plain grid-item" data-src="img/Syzygy_logo.png">
+					<img class="plain grid-item" data-src="img/allocine.png">
+					<img class="plain grid-item" data-src="img/alphasights.png">
+					<img class="plain grid-item" data-src="img/serverless.png">
+					<img class="plain grid-item" data-src="img/shopify.png">
+					<img class="plain grid-item" data-src="img/appier.png">
+					<img class="plain grid-item" data-src="img/arangodb.png">
+					<img class="plain grid-item" data-src="img/artsy.png">
+					<img class="plain grid-item" data-src="img/attendify.png">
+					<img class="plain grid-item" data-src="img/bazinga.png">
+					<img class="plain grid-item" data-src="img/blenderbottle.png">
+					<img class="plain grid-item" data-src="img/brewerybuddy.png">
+					<img class="plain grid-item" data-src="img/bright.png">
+					<img class="plain grid-item" data-src="img/buildkite.png">
+					<img class="plain grid-item" data-src="img/clubmed.png">
+					<img class="plain grid-item" data-src="img/commercetools.png">
+					<img class="plain grid-item" data-src="img/curio.png">
+					<img class="plain grid-item" data-src="img/drift.png">
+					<img class="plain grid-item" data-src="img/easycarros.png">
+					<img class="plain grid-item" data-src="img/graphcms.png">
+					<img class="plain grid-item" data-src="img/graphcool.png">
+					<img class="plain grid-item" data-src="img/hudl.png">
+					<img class="plain grid-item" data-src="img/pinterest.png">
+					<img class="plain grid-item" data-src="img/huntlogo.png">
+					<img class="plain grid-item" data-src="img/inerva.png">
+					<img class="plain grid-item" data-src="img/intuit.png">
+					<img class="plain grid-item" data-src="img/restorando.png">
+					<img class="plain grid-item" data-src="img/leanix.png">
+					<img class="plain grid-item" data-src="img/loggi.png">
+					<img class="plain grid-item" data-src="img/make-school.png">
+					<img class="plain grid-item" data-src="img/meteor.png">
+					<img class="plain grid-item" data-src="img/mojilala.png">
+					<img class="plain grid-item" data-src="img/ningensoft.png">
+					<img class="plain grid-item" data-src="img/nova-ideo.png">
+					<img class="plain grid-item" data-src="img/okgrow.png">
+					<img class="plain grid-item" data-src="img/ovos.png">
+					<img class="plain grid-item" data-src="img/persado.png">
+					<img class="plain grid-item" data-src="img/project-september.png">
+					<img class="plain grid-item" data-src="img/prowl.png">
+					<img class="plain grid-item" data-src="img/quri.png">
+					<img class="plain grid-item" data-src="img/redbubble.png">
+					<img class="plain grid-item" data-src="img/reindex.png">
+					<aside class="notes">
+						and so are these companies. So why are these big companies...
+					</aside>
+				</section>
+				<section data-transition="zoom-in">
+					<img class="stretch plain" data-src="img/graphql.svg">
+					<h1>GraphQL</h1>
+					<aside class="notes">
+						...using GraphQL? And why is changing the face of Web services? Today I will introduce you to GraphQL, talk about its history, and how it can make writing your next API a breeze.
+					</aside>
+				</section>
+				<section>
+					<h1>API</h1>
+					<h3 class="fragment fade-up">Application Programming Interface</h3>
+					<p class="fragment fade-up">A way to access information from a web server</p>
+					<aside class="notes">
+						First does anyone know what API stands for? Application programming interface - don't worry even if I had to google that. In an online API, it is simply a way to access information from the WebServer.
+					</aside>
+				</section>
+				<section data-transition="slide">
+					<h2>Credit card payments?</h2>
+					<img class="plain fragment" data-src="img/stripe.svg">
+					<aside class="notes">
+						So for example if you want to handle credit card payments you do not have to code the entire process yourself, Stripe does that for you.
+					</aside>
+				</section>
+				<section>
+					<h2>Mass sending emails?</h2>
+					<img class="plain fragment" data-src="img/mailchimp-freddie.svg">
+					<aside class="notes">
+						Emails? Mailgun.
+					</aside>
+				</section>
+				<section>
+					<h2>APIs power the internet</h2>
+					<img class="plain stretch" data-src="img/slack-integration.png">
+					<aside class="notes">
+						I'm sure you all are familiar with slack and its integrations. APIs power the ever interconnected World wide web.
+					</aside>
+				</section>
+				<section>
+					<h1>What is GraphQL?</h1>
+					<p class="fragment fade-up">Query language for APIs</p>
+					<p class="fragment fade-up">Data source agnostic</p>
+					<aside class="notes">
+						GraphQL is a query language for APIs. In the simplest form. It can be looked at as SQL queries, but it is not a database. In fact, GraphQL doesn't care where you get the data. That way, you specify your sources, in memory, SQL databases, No-SQL databases, even other APIs.
+					</aside>
+				</section>
+				<section>
+					<h2>GraphQL in action</h2>
+					<pre><code data-trim>
+					{
+					  viewer {
+					    login
+					    bio
+					    organizations(first: 3) {
+					      edges {
+					        org:node {
+					          name
+					        }
+					      }
+					    }
+					  }
+					}
+    				</code></pre>
+					<aside class="notes">
+						So to give you a taste of GraphQL, this is what a query for a Github user and his or her first 3 organisations looks like
+					</aside>
+				</section>
+				<section>
+					<h1>Why GraphQL</h1>
+					<pre class="fragment"><code data-trim>
+					{
+					  viewer {
+					    login
+					    bio
+					    organizations(first: 3) {
+					      edges {
+					        org:node {
+					          name
+					        }
+					      }
+					    }
+					  }
+					}
+    				</code></pre>
+					<aside class="notes">
+						Let's go back to the query. One user's login handle, the user's bio, and three organisation's name. In github's rest API, you would have to first call the endpoint once for the user, then again for the organisation names.
+					</aside>
+				</section>
+				<section>
+					<h1>Advantages</h1>
+					<ol>
+						<li>Fewer requests</li>
+					</ol>
+					<aside class="notes">
+						With GraphQL, you only ever have to do one. Alright, so maybe 2 to one query isn't that much. Let's look at the first query for the user. We only get their login handle and their bio. Github generously returns us all these:
+					</aside>
+				</section>
+				<section>
+					<h3>All for a single user</h3>
+					<pre class="stretch"><code data-trim>
+					{
+					  "login": "octocat",
+					  "id": 1,
+					  "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+					  "gravatar_id": "",
+					  "url": "https://api.github.com/users/octocat",
+					  "html_url": "https://github.com/octocat",
+					  "followers_url": "https://api.github.com/users/octocat/followers",
+					  "following_url": "https://api.github.com/users/octocat/following{/other_user}",
+					  "gists_url": "https://api.github.com/users/octocat/gists{/gist_id}",
+					  "starred_url": "https://api.github.com/users/octocat/starred{/owner}{/repo}",
+					  "subscriptions_url": "https://api.github.com/users/octocat/subscriptions",
+					  "organizations_url": "https://api.github.com/users/octocat/orgs",
+					  "repos_url": "https://api.github.com/users/octocat/repos",
+					  "events_url": "https://api.github.com/users/octocat/events{/privacy}",
+					  "received_events_url": "https://api.github.com/users/octocat/received_events",
+					  "type": "User",
+					  "site_admin": false,
+					  "name": "monalisa octocat",
+					  "company": "GitHub",
+					  "blog": "https://github.com/blog",
+					  "location": "San Francisco",
+					  "email": "octocat@github.com",
+					  "hireable": false,
+					  "bio": "There once was...",
+					  "public_repos": 2,
+					  "public_gists": 1,
+					  "followers": 20,
+					  "following": 0,
+					  "created_at": "2008-01-14T04:33:35Z",
+					  "updated_at": "2008-01-14T04:33:35Z"
+					}
+    				</code></pre>
+					<aside class="notes">
+						Maybe that's fine for one user, but let's say you want to query many users' bio. Which, Github's multiple user query doesn't provide. That's a lot of wasted bandwidth and data.
+					</aside>
+				</section>
+				<section>
+					<h3>Internet isn't always free</h3>
+					<img class="stretch plain" src="img/sia.png">
+					<aside class="notes">
+						If you're doing it all on the phone, your users will cry when they see their data bills.
+					</aside>
+				</section>
+				<section>
+					<h1>Advantages</h1>
+					<ol>
+						<li>Fewer requests</li>
+						<li>No over-fetching</li>
+					</ol>
+					<aside class="notes">
+						GraphQL has an aim of reducing data usage, so your users can have really bad internet and still browse.
+					</aside>
+				</section>
+				<section>
+					<h1>Type System</h1>
+					<h4>"followers"</h4>
+					<ul>
+						<li class="fragment fade-up">Count</li>
+						<li class="fragment fade-up">List of names</li>
+						<li class="fragment fade-up">List of users</li>
+					</ul>
+					<aside class="notes">
+						Lastly, the greatest benefit is the type system. Ever wanted the safety of a type system? If the API has really bad documentation, do you know if "followers" will return you the count, list of names or a list of uers?
+					</aside>
+				</section>
+				<section>
+					<h1>Type System</h1>
+					<h4>"followers"</h4>
+					<ul>
+						<li class="fragment fade-up">Count</li>
+						<li class="fragment fade-up">List of names</li>
+						<li class="fragment fade-up">List of users</li>
+					</ul>
+					<aside class="notes">
+						With GraphQL, you can guarantee that the object you get back is definitely of that type.
+					</aside>
+				</section>
+				<section>
+					<h1>Advantages</h1>
+					<ol>
+						<li>Fewer requests</li>
+						<li>No over-fetching</li>
+						<li>Type system</li>
+					</ol>
+					<aside class="notes">
+						So all these benefits explain why big companies are using GraphQL, but what is in for us, people who build small projects? We, who don't have audiences in Congo using their 2G internet.
+					</aside>
+				</section>
+				<section>
+					<h1>Graphiql</h1>
+					<a href="https://developer.github.com/early-access/graphql/explorer/">Fully browseable, auto-completed GUI</a>
+					<aside class="notes">
+						I'll show you right now.
+					</aside>
+				</section>
+				<section>
+					<h1>Advantages</h1>
+					<ol>
+						<li>Fewer requests</li>
+						<li>No over-fetching</li>
+						<li>Type system</li>
+						<li>Self-documenting</li>
+					</ol>
+					<aside class="notes">
+						In short, GraphQL meets the new demographics who are getting introduced to the internet, and at the same time, provides a great development experience.
+					</aside>
+				</section>
+				<section>
+					<h1>GraphQL: The API of the future</h1>
+					<ul>
+						<li>Catering to the "upcoming billion"</li>
+						<li>Unified, fantastic developer experience</li>
+					</ul>
+					<aside class="notes">
+						This is an introduction to GraphQL and I hope it has sparked some thoughts of adopting it. Thank you.
+					</aside>
+				</section>
+				<section>
+					<h1>Thank you</h1>
+				</section>
 			</div>
 		</div>
 
@@ -36,15 +320,32 @@
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
-
+    			transition: 'fade-out',
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
+					{ src: '//npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js', async: true},
+					{ src: '//cdnjs.cloudflare.com/ajax/libs/velocity/1.4.0/velocity.min.js', async: true },
+					{ src: '//cdn.jsdelivr.net/velocity/1.4.0/velocity.ui.min.js', async: true },
+					{ src: '//unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js', async: true },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+
+			Reveal.addEventListener('amaze', function() {
+				var images = document.querySelectorAll('.grid-item');
+				var msnry = new Masonry('.present', {
+				  itemSelector: '.grid-item',
+				  percentPosition: true,
+				  columnWidth: '.grid-sizer',
+				  transitionDuration: 0,
+				  containerStyle: null,
+				});
+				imagesLoaded(images, function() {
+				  msnry.layout();
+					Velocity(images, 'transition.shrinkIn', { stagger: 25, duration: 600 });
+				});
+			}, false );
 		</script>
 	</body>
 </html>
