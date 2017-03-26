@@ -7,10 +7,10 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
-
+		<link rel="stylesheet" href="css/theme/subtle.css">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/github.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -23,9 +23,197 @@
 	</head>
 	<body>
 		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+			<pr class="slides">
+				<section>
+					<h1 class="fragment">Cash</h1>
+				</section>
+				<section><h1>Cache</h1></section>
+				<section>
+					<h2>What is cache?</h2>
+					<p>Temporarily storing data for retrieval</p>
+				</section>
+				<section>
+					<h3>An analogy</h3>
+					<p>What is 2560 / 16?</p>
+					<span class="fragment fade-in">
+						<span class="fragment fade-out">160</span>
+					</span>
+				</section>
+				<section>
+					<h2>Why use cache?</h2>
+					<div class="horizontal">
+						<div>
+							<i class="fa fa-hourglass-end fa-lg hourglass" aria-hidden="true"></i>
+							<p>Faster response time</p>
+						</div>
+						<div>
+							<i class="fa fa-bolt fa-lg bolt" aria-hidden="true"></i>
+							<p>Saves computing power</p>
+						</div>
+						<div>
+							<i class="fa fa-users fa-lg users" aria-hidden="true"></i>
+							<p>Better user experience</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>CDN</h3>
+					<p>Content Delivery Networks</p>
+					<p>Cache data in other servers, reducing fetch time.</p>
+				</section>
+				<section>
+					<figure>
+						<img class="plain" src="./img/map.gif" alt="worldwide cdn network">
+					</figure>
+				</section>
+				<section>
+					<p>Let others do the work for you.</p>
+					<div class="horizontal">
+						<figure>
+							<img class="plain" height="200" src="./img/cloudflare.svg" alt="cloudflare">
+							<figcaption>Cloudflare</figcaption>
+						</figure>
+						<figure>
+							<img class="plain" height="200" src="./img/aws-cloudfront.svg" alt="aws-cloudfront">
+							<figcaption>AWS-cloudfront</figcaption>
+						</figure>
+						<figure>
+							<img class="plain" height="200" src="./img/akamai.svg" alt="akamai">
+							<figcaption>Akamai</figcaption>
+						</figure>
+					</div>
+				</section>
+				<section>
+					<h3>CDN</h3>
+						Disadvantages:
+					<ul>
+						<li>Only static content</li>
+						<li>Cost ranges from free to expensive</li>
+						<li>Reliability/Security up to CDN</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Cache-Control</h3>
+					<p>Specifying how long browser should cache in headers</p>
+				</section>
+				<section>
+					<img src="./img/Cache-Control.png" alt="cache control diagram">
+					<p>Browser automatically returns same file if max-age is still active</p>
+				</section>
+				<section>
+					<h4>HTTP response</h4>
+					<pre><code data-trim class="http">
+						HTTP/1.1 200 OK
+						Server: GitHub.com
+						Content-Type: text/css
+						Cache-Control: max-age=600
+					</code></pre>
+				</section>
+				<section>
+					<h3>Cache-Control</h3>
+						Disadvantages:
+					<ul>
+						<li>No way to refresh content before max-age</li>
+					</ul>
+				</section>
+				<section>
+					<h3>E-tag</h3>
+					<p>A checksum for your data</p>
+				</section>
+				<section>
+					<img src="./img/http-cache-control.png" alt="e tag diagram">
+					<p>Browser checks with server if it has the latest version of the file</p>
+				</section>
+				<section>
+					<h4>HTTP response</h4>
+					<pre><code data-trim class="http">
+						HTTP/1.1 200 OK
+						Server: GitHub.com
+						Content-Type: text/css
+						Cache-Control: max-age=600
+						etag:W/"269550530cc127b6aa5a35925a7de6ce"
+					</code></pre>
+				</section>
+				<section>
+					<h3>E-tag</h3>
+						Disadvantages:
+					<ul>
+						<li>Still a HTTP request needed</li>
+						<li>More complex to set up on server side</li>
+					</ul>
+				</section>
+				<section>
+					<p>Set up Cache-Control and E-tag</p>
+					<div class="horizontal">
+						<figure>
+							<img class="plain" height="200" src="./img/apache.svg" alt="apache">
+							<figcaption>Apache</figcaption>
+						</figure>
+						<figure>
+							<img class="plain" height="200" src="./img/nginx.svg" alt="nginx">
+							<figcaption>nginx</figcaption>
+						</figure>
+					</div>
+				</section>
+				<section>
+					<h3>Service Worker: Cache API</h3>
+					<p>No server? No problem</p>
+				</section>
+				<section>
+					<p>Programmatic API that enables more flexible caching strategies</p>
+					<p>Allows you to control when, what, how to cache</p>
+					<a href="https://serviceworke.rs/">https://serviceworke.rs/</a>
+				</section>
+				<section>
+					<h3>Service Workers</h3>
+						Disadvantages:
+					<ul>
+						<li>Complex to set up and maintain</li>
+						<li>Really new, only supported in Chrome/Firefox</li>
+						<li>Will probably never be implemented in iOS</li>
+					</ul>
+				</section>
+				<section>
+					<img src="./img/cache-stock-photo.jpg" alt="cache photo">
+					<h3>Start caching</h3>
+					<p>Less cashing</p>
+				</section>
+				<section>
+					<h2>PUMA</h2>
+					<dl>
+						<dt>Audience</dt>
+						<dd>Front-end developers</dd>
+						<dt>Objective</dt>
+						<dd>Introduce and educate about caching</dd>
+						<dt>Topic</dt>
+						<dd>Caching</dd>
+						<dt>Punch</dt>
+						<dd>Who doesn't want cache?</dd>
+						<dt>WIIFY</dt>
+						<dd>Spend less and make your users happier</dd>
+					</dl>
+				</section>
+				<section>
+					<dl>
+						<dt>Key Points</dt>
+						<dd>
+							<ul>
+								<li>Start caching your webpages</li>
+								<li>Cache-Control & ETag</li>
+								<li>CDN</li>
+								<li>Service Workers - Cache API</li>
+							</ul>
+						</dd>
+						<dt>Call to action</dt>
+						<dd>Cache your webpages</dd>
+						<dt>Know</dt>
+						<dd>Many ways to go about caching</dd>
+						<dt>Believe</dt>
+						<dd>There is no loss in not doing caching</dd>
+						<dt>Do</dt>
+						<dd>Use caching</dd>
+					</dl>
+				</section>
 			</div>
 		</div>
 
@@ -36,11 +224,11 @@
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
-
+				controls: false,
+				transition: 'fade',
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
