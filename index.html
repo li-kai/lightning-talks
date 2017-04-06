@@ -34,30 +34,47 @@
 				</section>
 				<section>
 					<h3>An analogy</h3>
-					<p>What is 2560 / 16?</p>
+					<p>What is 52496 / 16?</p>
 					<span class="fragment fade-in">
-						<span class="fragment fade-out">160</span>
+						<span class="fragment fade-out">3281</span>
 					</span>
 				</section>
 				<section>
 					<h2>Why use cache?</h2>
 					<div class="horizontal">
-						<div>
+						<div class="fragment">
 							<i class="fa fa-hourglass-end fa-lg hourglass" aria-hidden="true"></i>
 							<p>Faster response time</p>
 						</div>
-						<div>
+						<div class="fragment">
 							<i class="fa fa-bolt fa-lg bolt" aria-hidden="true"></i>
 							<p>Saves computing power</p>
 						</div>
-						<div>
+						<div class="fragment">
 							<i class="fa fa-users fa-lg users" aria-hidden="true"></i>
 							<p>Better user experience</p>
 						</div>
 					</div>
 				</section>
 				<section>
-					<h3>CDN</h3>
+					<h3>Concepts</h3>
+					<div class="horizontal">
+						<div class="fragment">
+							<i class="fa fa-globe fa-lg" style="color:dodgerblue" aria-hidden="true"></i>
+							<p>CDN</p>
+						</div>
+						<div class="fragment">
+							<i class="fa fa-server fa-lg" style="color:mediumseagreen" aria-hidden="true"></i>
+							<p>Cache-Control & E-tag</p>
+						</div>
+						<div class="fragment">
+							<i class="fa fa-wrench fa-lg" style="color:dimgrey" aria-hidden="true"></i>
+							<p>Service Worker</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3><i class="fa fa-globe fa-lg" style="color:dodgerblue" aria-hidden="true"></i> CDN</h3>
 					<p>Content Delivery Networks</p>
 					<p>Cache data in other servers, reducing fetch time.</p>
 				</section>
@@ -84,7 +101,7 @@
 					</div>
 				</section>
 				<section>
-					<h3>CDN</h3>
+					<h3><i class="fa fa-globe fa-lg" style="color:dodgerblue" aria-hidden="true"></i> CDN</h3>
 						Disadvantages:
 					<ul>
 						<li>Only static content</li>
@@ -93,7 +110,7 @@
 					</ul>
 				</section>
 				<section>
-					<h3>Cache-Control</h3>
+					<h3><i class="fa fa-server fa-lg" style="color:mediumseagreen" aria-hidden="true"></i> Cache-Control</h3>
 					<p>Specifying how long browser should cache in headers</p>
 				</section>
 				<section>
@@ -110,19 +127,31 @@
 					</code></pre>
 				</section>
 				<section>
-					<h3>Cache-Control</h3>
+					<h3><i class="fa fa-server fa-lg" style="color:mediumseagreen" aria-hidden="true"></i> Cache-Control</h3>
 						Disadvantages:
 					<ul>
 						<li>No way to refresh content before max-age</li>
 					</ul>
 				</section>
 				<section>
-					<h3>E-tag</h3>
+					<h3><i class="fa fa-server fa-lg" style="color:mediumseagreen" aria-hidden="true"></i> E-tag</h3>
 					<p>A checksum for your data</p>
 				</section>
 				<section>
 					<img src="./img/http-cache-control.png" alt="e tag diagram">
 					<p>Browser checks with server if it has the latest version of the file</p>
+				</section>
+				<section>
+					<h4>Scenario 1</h4>
+					<div class="fragment">Server: Oh hey, the e-tag's the same.</div>
+					<div class="fragment">Server: Just use the one you have.</div>
+					<div class="fragment">Result: Sends back 304: Not modified.</div>
+				</section>
+				<section>
+					<h4>Scenario 2</h4>
+					<div class="fragment">Server: What a shame, the e-tag's outdated</div>
+					<div class="fragment">Server: Here's the latest file.</div>
+					<div class="fragment">Result: Sends back new file.</div>
 				</section>
 				<section>
 					<h4>HTTP response</h4>
@@ -135,7 +164,7 @@
 					</code></pre>
 				</section>
 				<section>
-					<h3>E-tag</h3>
+					<h3><i class="fa fa-server fa-lg" style="color:mediumseagreen" aria-hidden="true"></i> E-tag</h3>
 						Disadvantages:
 					<ul>
 						<li>Still a HTTP request needed</li>
@@ -156,7 +185,7 @@
 					</div>
 				</section>
 				<section>
-					<h3>Service Worker: Cache API</h3>
+					<h3><i class="fa fa-wrench fa-lg" style="color:dimgrey" aria-hidden="true"></i> Service Worker: Cache API</h3>
 					<p>No server? No problem</p>
 				</section>
 				<section>
@@ -165,13 +194,30 @@
 					<a href="https://serviceworke.rs/">https://serviceworke.rs/</a>
 				</section>
 				<section>
-					<h3>Service Workers</h3>
+					<h3><i class="fa fa-wrench fa-lg" style="color:dimgrey" aria-hidden="true"></i> Service Workers</h3>
 						Disadvantages:
 					<ul>
 						<li>Complex to set up and maintain</li>
 						<li>Really new, only supported in Chrome/Firefox</li>
 						<li>Will probably never be implemented in iOS</li>
 					</ul>
+				</section>
+				<section>
+					<h3>Recap</h3>
+					<div class="horizontal">
+						<div class="fragment">
+							<i class="fa fa-globe fa-lg" style="color:dodgerblue" aria-hidden="true"></i>
+							<p>CDN</p>
+						</div>
+						<div class="fragment">
+							<i class="fa fa-server fa-lg" style="color:mediumseagreen" aria-hidden="true"></i>
+							<p>Cache-Control & E-tag</p>
+						</div>
+						<div class="fragment">
+							<i class="fa fa-wrench fa-lg" style="color:dimgrey" aria-hidden="true"></i>
+							<p>Service Worker</p>
+						</div>
+					</div>
 				</section>
 				<section>
 					<img src="./img/cache-stock-photo.jpg" alt="cache photo">
