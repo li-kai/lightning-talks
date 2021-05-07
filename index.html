@@ -43,8 +43,7 @@
 					</aside>
 				</section>
 				<section data-state="amaze" class="grid" data-transition="none fade-out" data-transition-speed="fast">
-					<div class="grid-sizer"></div>
-					<img class="plain grid-item" data-src="img/coursera.png">
+					<img class="plain grid-sizer grid-item" data-src="img/coursera.png">
 					<img class="plain grid-item" data-src="img/Syzygy_logo.png">
 					<img class="plain grid-item" data-src="img/allocine.png">
 					<img class="plain grid-item" data-src="img/alphasights.png">
@@ -330,16 +329,22 @@
 
 			Reveal.addEventListener('amaze', function() {
 				var images = document.querySelectorAll('.grid-item');
-				var msnry = new Masonry('.present', {
+				var msnry = new Masonry('.grid', {
 				  itemSelector: '.grid-item',
 				  percentPosition: true,
 				  columnWidth: '.grid-sizer',
 				  transitionDuration: 0,
 				  containerStyle: null,
 				});
-				imagesLoaded(images, function() {
+				imagesLoaded(images, function () {
+				  msnry.on('layoutComplete', function () {
+				    Velocity(images, 'transition.shrinkIn', {
+				      stagger: 25,
+				      duration: 600,
+				    });
+				  });
+
 				  msnry.layout();
-					Velocity(images, 'transition.shrinkIn', { stagger: 25, duration: 600 });
 				});
 			}, false );
 		</script>
